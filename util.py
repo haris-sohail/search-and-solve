@@ -1,3 +1,5 @@
+from vertex import *
+
 def readFileIntoList(filename):
     fileLines = [];
 
@@ -14,5 +16,5 @@ def readFileIntoList(filename):
 def execute(filename):
     fileLines = readFileIntoList(filename);
 
-    
+
 
