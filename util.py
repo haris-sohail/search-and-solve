@@ -27,6 +27,7 @@ def execute(filename):
     vertices = []
     vertexInfo = []
     newVertexFound = False
+    firstVertex = True
 
     # for each new vertex line create a new vertex object
     for line in fileLines:
@@ -35,10 +36,13 @@ def execute(filename):
 
         if(vertexName != previousVertName or (previousVertName is None)): # new vertex found
 
-            if len(vertexInfo) != 0: # if it is not the first vertex
-                vertex = makeVertex(vertexInfo, vertexName)
+            if len(vertexInfo) != 0 or (firstVertex == False): # if it is not the first vertex
+                vertex = makeVertex(vertexInfo, previousVertName)
+                vertexInfo.clear()
 
                 vertices.append(vertex)
+
+                firstVertex = False
 
             newVertexFound = True
             vertexInfo.append(line) # append the first line
