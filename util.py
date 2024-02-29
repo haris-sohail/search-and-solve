@@ -12,16 +12,12 @@ def readFileIntoList(filename):
     return fileLines;
 
 def makeVertex(vertexInfo, vertexName):
-    vertex = Vertex(vertexName, vertexInfo)
+    vertex = Vertex(vertexName)
     vertex.setInfo(vertexInfo)
 
     return vertex
 
-
-def execute(filename):
-    fileLines = readFileIntoList(filename)
-
-    # vertices storage start here
+def getVertices(fileLines):
     previousVertName = None
 
     vertices = []
@@ -53,6 +49,23 @@ def execute(filename):
         newVertexFound = False
 
         previousVertName = vertexName
+
+    # append the last vertex
+    vertex = makeVertex(vertexInfo, previousVertName)
+    vertexInfo.clear()
+
+    vertices.append(vertex)
+
+    return vertices
+
+
+def execute(filename):
+    fileLines = readFileIntoList(filename)
+
+    vertices = getVertices(fileLines)
+
+    print('hell')
+    
 
 
 
