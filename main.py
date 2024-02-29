@@ -1,7 +1,7 @@
 from util import *
 
 def main():
-    filename = "data1.txt"
+    filename = "data0.txt"
     execute("./data-files/" + filename);
 
 main();

@@ -1,4 +1,5 @@
 from vertex import *
+import itertools
 
 def readFileIntoList(filename):
     fileLines = [];
@@ -58,14 +59,32 @@ def getVertices(fileLines):
 
     return vertices
 
+def getVerticesNames(vertices):
+    verticesNames = []
+    
+    for i in range(0, len(vertices)):
+        verticesNames.append(i)
+        
+    return verticesNames
+
 
 def execute(filename):
     fileLines = readFileIntoList(filename)
 
-    vertices = getVertices(fileLines)
-
-    print('hell')
+    vertices = getVertices(fileLines) 
     
+    verticesNames = getVerticesNames(vertices)
+    
+    # get all permutations
+    
+    allPerm = list(itertools.permutations(verticesNames))
+    
+    
+    
+    
+    
+
+
 
 
 
