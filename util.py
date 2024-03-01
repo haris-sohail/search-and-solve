@@ -1,4 +1,5 @@
 from vertex import *
+from permutation import *
 import itertools
 
 def readFileIntoList(filename):
@@ -138,6 +139,17 @@ def getCostAllPerm(allPerm):
         
     return costs
     
+    
+def initializePermObjects(allPerm, allPermCosts):
+    permObjs = []
+    
+    for (perm, cost) in zip(allPerm, allPermCosts):
+        permObj = Permutation(cost, perm)
+        permObjs.append(permObj)
+    
+    return permObjs 
+    
+        
 def execute(filename):
     fileLines = readFileIntoList(filename)
 
@@ -153,6 +165,10 @@ def execute(filename):
     # get cost of all permutations
     
     allPermCosts = getCostAllPerm(allPerm)
+    
+    # Initialize a list of all permutation objects with their costs
+    
+    permCosts = initializePermObjects(allPerm, allPermCosts)
 
     
     
