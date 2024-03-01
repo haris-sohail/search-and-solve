@@ -168,7 +168,9 @@ def execute(filename):
     
     # Initialize a list of all permutation objects with their costs
     
-    permCosts = initializePermObjects(allPerm, allPermCosts)
+    permObjs = initializePermObjects(allPerm, allPermCosts)
+    
+    
 
     
     
