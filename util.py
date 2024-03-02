@@ -1,5 +1,6 @@
 from vertex import *
 from permutation import *
+from graph import *
 import itertools
 
 def readFileIntoList(filename):
@@ -149,6 +150,38 @@ def initializePermObjects(allPerm, allPermCosts):
     
     return permObjs 
     
+    
+def initializeGraph(permObjs):
+    graph = Graph()
+    graph.add_node("S")
+    
+    for permObj in permObjs:
+        graph.add_node(permObj.name)
+        
+    rowNodes = []
+    nodesToAdd = []
+    rowNodes.append("S")
+    permObjI = 0
+    
+    for node in rowNodes:
+        
+        if(permObjI < 120):
+            for i in range(0, 4):
+                nodesToAdd.append(permObjs[permObjI]) # get 4 permObjs to add to graph
+                permObjI += 1 
+        
+        else:
+            break        
+            
+        for j in range(0, 4):    
+            graph.add_edge(node, nodesToAdd[j].name, nodesToAdd[j].cost)
+            rowNodes.append(nodesToAdd[j].name)
+            
+        nodesToAdd.clear()
+        
+    graph.bfs("S")
+        
+    
         
 def execute(filename):
     fileLines = readFileIntoList(filename)
@@ -170,7 +203,7 @@ def execute(filename):
     
     permObjs = initializePermObjects(allPerm, allPermCosts)
     
-    
+    initializeGraph(permObjs)
 
     
     

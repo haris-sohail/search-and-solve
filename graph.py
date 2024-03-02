@@ -38,3 +38,17 @@ class Graph:
         path.append(start)
         path.reverse()
         return path
+    
+    def bfs(graph, start):
+        children = []
+        visited = set()
+        queue = deque([start])
+
+        while queue:
+            vertex = queue.popleft()
+            if vertex not in visited:
+                visited.add(vertex)
+                print(vertex)
+                for child in graph.nodes[vertex].children:
+                    children.append(child.name)
+                queue.extend(children)
