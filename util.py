@@ -218,6 +218,9 @@ def execute(filename):
     
     graph.dfs("S")
     
+    graph.ucs("S")
+    
+    
 
     
     

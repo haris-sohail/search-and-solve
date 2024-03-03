@@ -61,7 +61,7 @@ class Graph:
                     children.append(child.name)
                 queue.extend(children)
                 
-        print("Minimum Path in BFS: ", minPath, ", with cost: ", cost)
+        print("Minimum Path in BFS: ", minPath, ", with cost: ", min)
         
     def dfs(graph, start):
         min = float('inf')
@@ -84,4 +84,27 @@ class Graph:
                     children.append(child.name)
                 stack.extend(children)
                 
-        print("Minimum Path in BFS: ", minPath, ", with cost: ", cost)
+        print("Minimum Path in DFS: ", minPath, ", with cost: ", min)
+        
+    def ucs(graph, start): # graph is unweighted, same algorithm as bfs
+        min = float('inf')
+        children = []
+        visited = set()
+        queue = deque([start])
+
+        while queue:
+            vertex = queue.popleft()
+            if vertex not in visited:
+                visited.add(vertex)
+                
+                if vertex != 'S':
+                    cost = ut.getCost(vertex)
+                    if(cost < min):
+                        minPath = vertex
+                        min = cost
+                    
+                for child in graph.nodes[vertex].children:
+                    children.append(child.name)
+                queue.extend(children)
+                
+        print("Minimum Path in UCS: ", minPath, ", with cost: ", min)
