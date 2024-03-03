@@ -1,5 +1,6 @@
 from collections import deque
 from queue import PriorityQueue
+import util as ut
 
 class Graph:
     class Node:
@@ -40,6 +41,7 @@ class Graph:
         return path
     
     def bfs(graph, start):
+        min = float('inf')
         children = []
         visited = set()
         queue = deque([start])
@@ -48,7 +50,38 @@ class Graph:
             vertex = queue.popleft()
             if vertex not in visited:
                 visited.add(vertex)
-                print(vertex)
+                
+                if vertex != 'S':
+                    cost = ut.getCost(vertex)
+                    if(cost < min):
+                        minPath = vertex
+                        min = cost
+                    
                 for child in graph.nodes[vertex].children:
                     children.append(child.name)
                 queue.extend(children)
+                
+        print("Minimum Path in BFS: ", minPath, ", with cost: ", cost)
+        
+    def dfs(graph, start):
+        min = float('inf')
+        children = []
+        visited = set()
+        stack = deque([start])
+
+        while stack:
+            vertex = stack.pop()
+            if vertex not in visited:
+                visited.add(vertex)
+                
+                if vertex != 'S':
+                    cost = ut.getCost(vertex)
+                    if(cost < min):
+                        minPath = vertex
+                        min = cost
+                    
+                for child in graph.nodes[vertex].children:
+                    children.append(child.name)
+                stack.extend(children)
+                
+        print("Minimum Path in BFS: ", minPath, ", with cost: ", cost)

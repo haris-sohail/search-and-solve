@@ -150,6 +150,13 @@ def initializePermObjects(allPerm, allPermCosts):
     
     return permObjs 
     
+def getCost(permName):
+    i = 0
+    for perm in allPerm:
+        if perm == permName:
+            return allPermCosts[i]  
+        i += 1  
+    
     
 def initializeGraph(permObjs):
     graph = Graph()
@@ -179,14 +186,16 @@ def initializeGraph(permObjs):
             
         nodesToAdd.clear()
         
-    graph.bfs("S")
-        
-    
+    return graph
+                  
         
 def execute(filename):
     fileLines = readFileIntoList(filename)
 
     global vertices
+    global allPerm
+    global allPermCosts
+    
     vertices = getVertices(fileLines) 
     
     verticesNames = getVerticesNames(vertices)
@@ -203,7 +212,12 @@ def execute(filename):
     
     permObjs = initializePermObjects(allPerm, allPermCosts)
     
-    initializeGraph(permObjs)
+    graph = initializeGraph(permObjs)
+    
+    graph.bfs("S")   
+    
+    graph.dfs("S")
+    
 
     
     
