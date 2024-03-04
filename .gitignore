@@ -1,4 +1,5 @@
 .vscode/
 documentation/
-data-files/
+data-files/data1.txt
+data-files/data3.txt
 __pycache__/
